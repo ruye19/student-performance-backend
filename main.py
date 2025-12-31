@@ -1,8 +1,20 @@
 from fastapi import FastAPI
 import joblib
 import numpy as np
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 
 app = FastAPI(title="Student Performance Prediction API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+) 
 
 # Load models
 logistic_model = joblib.load("logistic_model.pkl")
